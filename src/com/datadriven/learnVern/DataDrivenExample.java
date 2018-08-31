@@ -13,7 +13,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DataDrivenExample  {
 	public void readExcell(String filePath, String fileName, String sheetName) throws IOException {
@@ -41,6 +40,7 @@ public class DataDrivenExample  {
 		
 	}
 	public void test(String username, String password) {
+		System.setProperty("webdriver.gecko.driver", "C:\\geckodriver\\geckodriver.exe");
 		WebDriver driver=new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://www.facebook.com");
@@ -52,7 +52,7 @@ public class DataDrivenExample  {
 		
 	}
 	public static void main(String[] args) throws IOException {
-		String filePath="F:\\";
+		String filePath="C:\\Users\\Sagor\\eclipse-workspace\\";
 		DataDrivenExample readFile=new DataDrivenExample();
 		readFile.readExcell(filePath, "datadriven.xlsx", "Sheet1");
 	}
