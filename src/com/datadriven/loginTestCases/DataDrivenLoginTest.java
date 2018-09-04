@@ -29,17 +29,24 @@ public class DataDrivenLoginTest {
 		excelSheet.DataDrivenReadFile("C:\\Users\\Sagor\\eclipse-workspace", "datadriven.xlsx", "Sheet1");
 		Sheet sheet=excelSheet.sheet;
 		int rowCount=sheet.getLastRowNum()-sheet.getFirstRowNum();
-		for(int i=0; i<=rowCount; i++) {
+		for(int i=1; i<=rowCount; i++) {
 			WebDriver driver=browser.startBrowser("firefox", "https://www.facebook.com");
-			Row row=sheet.getRow(i);
-			String email=row.getCell(0).getStringCellValue();
-			String password=row.getCell(1).getStringCellValue();
+			String email=excelSheet.getCellData(i, 0);
+			String password=excelSheet.getCellData(i, 1);
 			factory=PageFactory.initElements(driver, DataDrivenLoginFactory.class);
 			factory.DataDrivenLoginTest(email, password);
 			//Assert.assertSame("Facebook – log in or sign up", driver.getTitle();
 			String title=driver.getTitle();
-			excelSheet.DataDrivenWriteFile(i, 2, "Passed");
-			System.out.println("///////////////////Passed////////////////////////");
+			System.out.println(title);
+			if(title.equalsIgnoreCase("Log in to Facebook | Facebook")) {
+				excelSheet.DataDrivenWriteFile(i, 3, "Login Failed");
+				excelSheet.DataDrivenWriteFile(i, 4, "Passed");
+			}
+			else if(title.equalsIgnoreCase("Facebook")) {
+				excelSheet.DataDrivenWriteFile(i, 3, "Login Successfull");
+				excelSheet.DataDrivenWriteFile(i, 4, "Passed");
+			}
+			
 			driver.quit();
 		}
 	}

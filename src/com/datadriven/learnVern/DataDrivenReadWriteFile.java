@@ -2,6 +2,8 @@ package com.datadriven.learnVern;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -18,6 +20,7 @@ public class DataDrivenReadWriteFile {
 	String filePath;
 	String fileName;
 	String sheetName;
+	FileInputStream fis;
 	
 	
 //	To read the file from storage
@@ -28,7 +31,7 @@ public class DataDrivenReadWriteFile {
 		
 		
 		this.file=new File(filePath+"\\"+fileName);
-		FileInputStream fis=new FileInputStream(file);
+		this.fis=new FileInputStream(file);
 		
 		String fileExtension=fileName.substring(fileName.indexOf("."));
 		if(fileExtension.equals(".xlsx")) {
@@ -40,11 +43,17 @@ public class DataDrivenReadWriteFile {
 		}
 		this.sheet=workbook.getSheet(sheetName);
 	}
+	public String getCellData(int row, int cell) {
+		return sheet.getRow(row).getCell(cell).getStringCellValue();
+	}
 	public void DataDrivenWriteFile(int row, int cell, String result) throws Exception {
-		DataDrivenReadFile(filePath, fileName, sheetName);
+		//DataDrivenReadFile(filePath, fileName, sheetName);
 		Row tempRow=sheet.getRow(row);
 		Cell tempCell=tempRow.createCell(cell);
 		tempCell.setCellValue(result);
+		fis.close();
+		FileOutputStream fos=new FileOutputStream(file);
+		workbook.write(fos);
 		
 	}
 	
