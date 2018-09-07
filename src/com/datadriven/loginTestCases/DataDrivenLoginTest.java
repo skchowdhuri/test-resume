@@ -29,28 +29,62 @@ public class DataDrivenLoginTest {
 		excelSheet.DataDrivenReadFile("C:\\Users\\Sagor\\eclipse-workspace", "datadriven.xlsx", "Sheet1");
 		Sheet sheet=excelSheet.sheet;
 		int rowCount=sheet.getLastRowNum()-sheet.getFirstRowNum();
-		for(int i=1; i<=rowCount; i++) {
-			WebDriver driver=browser.startBrowser("firefox", "https://www.facebook.com");
-			String email=excelSheet.getCellData(i, 0);
-			String password=excelSheet.getCellData(i, 1);
+		int count=0;
+		for(int i=1; i<=rowCount-1; i++) {
+			//Browser name and link
+			WebDriver driver=browser.startBrowser("chrome", "http://localhost/");
+			String email, password;
+			if(excelSheet.getCell(i, 2)==null) {
+				email="";
+			}else {
+				email=excelSheet.getCellData(i, 2);
+			}
+			if(excelSheet.getCell(i, 3)==null) {
+				password="";
+			}else {
+				password=excelSheet.getCellData(i, 3);
+			}
 			factory=PageFactory.initElements(driver, DataDrivenLoginFactory.class);
+			Thread.sleep(2000);
 			factory.DataDrivenLoginTest(email, password);
 			//Assert.assertSame("Facebook – log in or sign up", driver.getTitle();
 			String title=driver.getTitle();
 			System.out.println(title);
-			if(title.equalsIgnoreCase("Log in to Facebook | Facebook")) {
-				excelSheet.DataDrivenWriteFile(i, 3, "Login Failed");
-				excelSheet.DataDrivenWriteFile(i, 4, "Passed");
+			if(title.equalsIgnoreCase("Document")) {
+				excelSheet.DataDrivenWriteFile(i, 5, "Login Failed");
+				excelSheet.DataDrivenWriteFile(i, 6, "Passed");
+				count++;
 			}
-			else if(title.equalsIgnoreCase("Facebook")) {
-				excelSheet.DataDrivenWriteFile(i, 3, "Login Successfull");
-				excelSheet.DataDrivenWriteFile(i, 4, "Passed");
+			else if(title.equalsIgnoreCase("Dashboard")) {
+				excelSheet.DataDrivenWriteFile(i, 5, "Login Successfull");
+				excelSheet.DataDrivenWriteFile(i, 6, "Passed");
+				count++;
 			}
-			
+			else {
+				excelSheet.DataDrivenWriteFile(i, 5, "Login Failed");
+				excelSheet.DataDrivenWriteFile(i, 6, "Failed");
+			}
+			Thread.sleep(1000);
 			driver.quit();
 		}
+		WebDriver driver=browser.startBrowser("chromei", "http://localhost/dash_upload.html");
+		Thread.sleep(2000);
+		String title=driver.getTitle();
+		if(title.equalsIgnoreCase("Login")) {
+			excelSheet.DataDrivenWriteFile(rowCount, 5, "Please Login to access the page");
+			excelSheet.DataDrivenWriteFile(rowCount, 6, "Passed");
+			driver.quit();
+			count++;
+		}
+		else{
+			excelSheet.DataDrivenWriteFile(rowCount, 5, "Please upload the file");
+			excelSheet.DataDrivenWriteFile(rowCount, 6, "Failed");
+			driver.quit();
+			//count++;
+		}
+		String result="Test Case Passed "+count+" Out of "+(rowCount);
+		excelSheet.DataDrivenWriteFile(5, 7, result);
+		
 	}
-	
-	
 
 }

@@ -43,9 +43,16 @@ public class DataDrivenReadWriteFile {
 		}
 		this.sheet=workbook.getSheet(sheetName);
 	}
+	//Get cell
+	public Cell getCell(int row, int cell) {
+		return sheet.getRow(row).getCell(cell);
+	}
+	//Get cell data
 	public String getCellData(int row, int cell) {
 		return sheet.getRow(row).getCell(cell).getStringCellValue();
 	}
+	//get all row data
+	
 	public void DataDrivenWriteFile(int row, int cell, String result) throws Exception {
 		//DataDrivenReadFile(filePath, fileName, sheetName);
 		Row tempRow=sheet.getRow(row);

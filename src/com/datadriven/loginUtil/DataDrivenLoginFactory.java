@@ -4,16 +4,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class DataDrivenLoginFactory {
-	@FindBy(name="email")
+	@FindBy(id="email")
 	WebElement username;
-	@FindBy(name="pass")
+	@FindBy(id="password")
 	WebElement password;
-	@FindBy(id="loginbutton")
+	@FindBy(id="icon")
 	WebElement loginButtron;
 	public void DataDrivenLoginTest(String email, String password) throws Exception {
 		this.username.sendKeys(email);
 		this.password.sendKeys(password);
 		this.loginButtron.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 	}
 }
