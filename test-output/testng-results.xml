@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="88329" started-at="2018-09-06T13:55:12Z" finished-at="2018-09-06T13:56:41Z">
+  <suite name="Default suite" duration-ms="68206" started-at="2018-09-11T07:02:59Z" finished-at="2018-09-11T07:04:08Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="88329" started-at="2018-09-06T13:55:12Z" finished-at="2018-09-06T13:56:41Z">
-      <class name="com.datadriven.loginTestCases.DataDrivenLoginTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.datadriven.loginTestCases.DataDrivenLoginTest@5b275dab]" name="beforeTest" is-config="true" duration-ms="33" started-at="2018-09-06T13:55:12Z" finished-at="2018-09-06T13:55:12Z">
+    <test name="Default test" duration-ms="68206" started-at="2018-09-11T07:02:59Z" finished-at="2018-09-11T07:04:08Z">
+      <class name="com.datadriven.loginTestCases.DataDrivenUploadTest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.datadriven.loginTestCases.DataDrivenUploadTest@5b275dab]" name="beforeTest" is-config="true" duration-ms="31" started-at="2018-09-11T07:02:59Z" finished-at="2018-09-11T07:02:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="loginVerify()[pri:0, instance:com.datadriven.loginTestCases.DataDrivenLoginTest@5b275dab]" name="loginVerify" duration-ms="88246" started-at="2018-09-06T13:55:12Z" finished-at="2018-09-06T13:56:41Z">
+        <test-method status="PASS" signature="uploadVerify()[pri:0, instance:com.datadriven.loginTestCases.DataDrivenUploadTest@5b275dab]" name="uploadVerify" duration-ms="68143" started-at="2018-09-11T07:02:59Z" finished-at="2018-09-11T07:04:08Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- loginVerify -->
-      </class> <!-- com.datadriven.loginTestCases.DataDrivenLoginTest -->
+        </test-method> <!-- uploadVerify -->
+      </class> <!-- com.datadriven.loginTestCases.DataDrivenUploadTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
