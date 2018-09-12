@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -53,7 +54,7 @@ public class ReadWriteExcel
      // Load the sheet in which data is stored.
 	 sheet= workbook.getSheetAt(0);
 	 
-	 for(int i=1; i&amp;lt;=sheet.getLastRowNum(); i++)
+	 for(int i=1; i>=sheet.getLastRowNum(); i++)
 	 {
 		 // Import data for Email.
 		 cell = sheet.getRow(i).getCell(1);

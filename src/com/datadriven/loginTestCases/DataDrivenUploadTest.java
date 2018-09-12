@@ -3,7 +3,6 @@ package com.datadriven.loginTestCases;
 
 import java.io.File;
 
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -14,8 +13,6 @@ import com.datadriven.browserHelper.BrowserHelper;
 import com.datadriven.learnVern.DataDrivenReadWriteFile;
 import com.datadriven.loginUtil.DataDrivenUploadFactory;
 
-import junit.framework.Assert;
-
 public class DataDrivenUploadTest {
 	BrowserHelper browser;
 	DataDrivenReadWriteFile excelSheet;
@@ -24,7 +21,6 @@ public class DataDrivenUploadTest {
 	public void beforeTest() throws Exception{
 		browser=new BrowserHelper();
 		excelSheet=new DataDrivenReadWriteFile();
-		
 	}
 	@Test
 	public void uploadVerify() throws Exception {
@@ -51,30 +47,45 @@ public class DataDrivenUploadTest {
 			//Assert.assertSame("Facebook – log in or sign up", driver.getTitle();
 			String title=driver.getTitle();
 			System.out.println(title);
-			if(uploadedFileSize > 4194304.0 && title.equalsIgnoreCase("Information")) {
-				excelSheet.DataDrivenWriteFile(i, 5, "Uploaded");
-				excelSheet.DataDrivenWriteFile(i, 6, "Failed");
+			System.out.println(filePath);
+			System.out.println(uploadedFileSize);
+			System.out.println(filePath.equals(""));
+			if(filePath.equals("") && title.equalsIgnoreCase("Information")) {
+				System.out.println("empty");
+				excelSheet.DataDrivenWriteFile(i, 4, "Uploaded");
+				excelSheet.DataDrivenWriteFile(i, 5, "Failed");
+			}
+			else if(filePath.equals("") && title.equalsIgnoreCase("Dashboard")) {
+				excelSheet.DataDrivenWriteFile(i, 4, "Not Uploaded");
+				excelSheet.DataDrivenWriteFile(i, 5, "Passed");
+				count++;
+			}
+			else if(uploadedFileSize > 4194304.0 && title.equalsIgnoreCase("Information")) {
+				System.out.println("more");
+				excelSheet.DataDrivenWriteFile(i, 4, "Uploaded");
+				excelSheet.DataDrivenWriteFile(i, 5, "Failed");
 				//count++;
 			}
 			else if(uploadedFileSize > 4194304.0 && title.equalsIgnoreCase("Dashboard")) {
-				excelSheet.DataDrivenWriteFile(i, 5, "Uploaded n");
-				excelSheet.DataDrivenWriteFile(i, 6, "Passed");
+				excelSheet.DataDrivenWriteFile(i, 4, "Uploaded n");
+				excelSheet.DataDrivenWriteFile(i, 5, "Passed");
 				count++;
 			}
-			else if(title.equalsIgnoreCase("Information")) {
-				excelSheet.DataDrivenWriteFile(i, 5, "Uploaded");
-				excelSheet.DataDrivenWriteFile(i, 6, "Passed");
+			else if(title.equalsIgnoreCase("Information") && uploadedFileSize < 4194304.0) {
+				System.out.println("passed");
+				excelSheet.DataDrivenWriteFile(i, 4, "Uploaded");
+				excelSheet.DataDrivenWriteFile(i, 5, "Passed");
 				count++;
 			}
 			else {
-				excelSheet.DataDrivenWriteFile(i, 5, "Not Uploaded");
-				excelSheet.DataDrivenWriteFile(i, 6, "Failed");
+				excelSheet.DataDrivenWriteFile(i, 4, "Not Uploaded");
+				excelSheet.DataDrivenWriteFile(i, 5, "Failed");
 			}
 			Thread.sleep(1000);
 			driver.quit();
 		}
 		// for pdf file
-		for(int i=3; i<=rowCount; i++) {
+		for(int i=4; i<=rowCount-1; i++) {
 			//Browser name and link
 			WebDriver driver=browser.startBrowser("chrome", "http://localhost/dash_upload.html");
 			String filePath;
@@ -90,22 +101,40 @@ public class DataDrivenUploadTest {
 			String title=driver.getTitle();
 			System.out.println(title);
 			if(title.equalsIgnoreCase("Information")) {
-				excelSheet.DataDrivenWriteFile(i, 5, "Uploaded");
-				excelSheet.DataDrivenWriteFile(i, 6, "Failed");
+				excelSheet.DataDrivenWriteFile(i, 4, "Uploaded");
+				excelSheet.DataDrivenWriteFile(i, 5, "Failed");
 				//count++;
 			}
 			else {
-				excelSheet.DataDrivenWriteFile(i, 5, "Not Uploaded");
-				excelSheet.DataDrivenWriteFile(i, 6, "Passed");
+				excelSheet.DataDrivenWriteFile(i, 4, "Not Uploaded");
+				excelSheet.DataDrivenWriteFile(i, 5, "Passed");
 				count++;
 			}
 			Thread.sleep(1000);
 			driver.quit();
 		}
+//		for(int i=4; i<=rowCount; i++) {
+//			//Browser name and link
+//			WebDriver driver=browser.startBrowser("chromei", "http://localhost/dash_upload.html?fileupload=SamplePDFFile_5mb.pdf");
+//			String title=driver.getTitle();
+//			System.out.println(title);
+//			if(title.equalsIgnoreCase("Information")) {
+//				excelSheet.DataDrivenWriteFile(i, 4, "Uploaded");
+//				excelSheet.DataDrivenWriteFile(i, 5, "Failed");
+//				//count++;
+//			}
+//			else {
+//				excelSheet.DataDrivenWriteFile(i, 5, "Not Uploaded");
+//				excelSheet.DataDrivenWriteFile(i, 6, "Passed");
+//				count++;
+//			}
+//			Thread.sleep(1000);
+//			driver.quit();
+//		}
 		System.out.println(count);
 		String result="Test Case Passed "+count+" Out of "+(rowCount);
 		System.out.println(result);
-		excelSheet.DataDrivenWriteFile(3, 7, result);
+		excelSheet.DataDrivenWriteFile(3, 6, result);
 	}
 
 }
