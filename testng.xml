@@ -5,8 +5,6 @@
   	<parameter name="ExcelUrl" value="C:\\Users\\Sagor\\eclipse-workspace\\"></parameter>
   	<parameter name="loginFile" value="datadriven.xlsx"></parameter>
     <classes>
-      <class name="com.datadriven.demoOne.ReadWriteExcel"/>
-      <class name="com.datadriven.learnVern.DataDrivenExample"/>
       <class name="com.datadriven.loginTestCases.DataDrivenLoginTest"/>
     </classes>
   </test> <!-- Test -->

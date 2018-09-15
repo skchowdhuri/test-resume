@@ -3,7 +3,6 @@
   <groupId>test-resume</groupId>
   <artifactId>test-resume</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
   <dependencies>
   	<dependency>
         <groupId>org.seleniumhq.selenium</groupId>
