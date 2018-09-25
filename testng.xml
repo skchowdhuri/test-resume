@@ -5,7 +5,7 @@
   	<parameter name="ExcelUrl" value="C:\\Users\\Sagor\\eclipse-workspace\\"></parameter>
   	<parameter name="loginFile" value="datadriven.xlsx"></parameter>
     <classes>
-      <class name="com.datadriven.loginTestCases.DataDrivenLoginTest"/>
+      <class name="com.sagor.YouTubeTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

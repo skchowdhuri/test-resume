@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="140904" started-at="2018-09-15T07:36:45Z" finished-at="2018-09-15T07:39:06Z">
+  <suite name="Suite" duration-ms="159" started-at="2018-09-25T06:47:39Z" finished-at="2018-09-25T06:47:39Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="140904" started-at="2018-09-15T07:36:45Z" finished-at="2018-09-15T07:39:06Z">
-      <class name="com.datadriven.loginTestCases.DataDrivenUploadTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.datadriven.loginTestCases.DataDrivenUploadTest@7d9d1a19]" name="beforeTest" is-config="true" duration-ms="279" started-at="2018-09-15T07:36:45Z" finished-at="2018-09-15T07:36:46Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="uploadVerify()[pri:0, instance:com.datadriven.loginTestCases.DataDrivenUploadTest@7d9d1a19]" name="uploadVerify" duration-ms="140428" started-at="2018-09-15T07:36:46Z" finished-at="2018-09-15T07:39:06Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- uploadVerify -->
-      </class> <!-- com.datadriven.loginTestCases.DataDrivenUploadTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    <test name="Test" duration-ms="159" started-at="2018-09-25T06:47:39Z" finished-at="2018-09-25T06:47:39Z">
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>
